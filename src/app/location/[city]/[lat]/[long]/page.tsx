@@ -2,7 +2,7 @@ import { getClient } from "@/Components/apollo-client";
 import fetchWeatherQuery from "@/Components/queries/FetchWeatherQueries";
 import { Root } from "../../../../../../typings";
 import CalloutCard from "@/Components/CalloutCard";
-import { InformationPanel, StatCard } from "@/Components";
+import { HumidityChart, InformationPanel, RainChart, StatCard, TempChart } from "@/Components";
 
 
 type Props = {
@@ -43,10 +43,10 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
           </div>
 
           <div>
-              <CalloutCard message=" Chat GPT"/>
+              <CalloutCard message="Recomendation"/>
           </div>
 
-        <div className="pt-5 text-sm grid grid-cols-1 xl:grid-cols-2 gap-5 m-2">
+        <div className="pt-5 text-sm grid grid-cols-1 xl:grid-cols-2 gap-3 m-2">
         <div className="pt-5 text-sm">
           <StatCard 
             title="Maximum Temperature"
@@ -62,12 +62,12 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
         <div className="pt-5">
           <StatCard title="UV Index" color="red" metric={`${results.daily.uv_index_max[0].toFixed(1)}`}/>
           {Number(results.daily.uv_index_max[0].toFixed(1))>5&& (<CalloutCard 
-          message={"The UV Index is High. Wear SPF 🔥"} 
+          message={"The UV Index is High. Wear SPF and Sunglasses 🕶️ 🔥"} 
           warning
           />
           )}
         </div>
-        <div className='flex space-x-2 pt-5'>
+        <div className='flex space-x-2 pt-1'>
               <StatCard
                 title='Wind Speed'
                 metric={`${results.current_weather.windspeed.toFixed(1)}m/s`}
@@ -82,7 +82,12 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
       </div>
 
       <div> 
-        {/* charts*/}
+      <hr className='mb-5' />
+        <div className='space-y-3'>
+          <TempChart results={results} />
+          <RainChart results={results} />
+          <HumidityChart results={results} />
+        </div>
         
       </div>
     </div>

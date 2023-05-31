@@ -2,13 +2,13 @@
 
 import { AreaChart, Card, Title } from '@tremor/react';
 import React from 'react';
-
+import { Root } from '../../typings';
 interface TempChartProps {
-  result: Root;
+  results: Root;
 }
 
-const TempChart: React.FC<TempChartProps> = ({ result }) => {
-  const hourly = result?.hourly.time
+const TempChart: React.FC<TempChartProps> = ({ results }) => {
+  const hourly = results?.hourly.time
     .map((time) =>
       new Date(time).toLocaleString('en-US', {
         hour: 'numeric',
@@ -19,8 +19,8 @@ const TempChart: React.FC<TempChartProps> = ({ result }) => {
 
   const data = hourly.map((hour, index) => ({
     time: Number(hour),
-    'UV Index': result.hourly.uv_index[index],
-    'Temperature (C)': result.hourly.temperature_2m[index],
+    'UV Index': results.hourly.uv_index[index],
+    'Temperature (C)': results.hourly.temperature_2m[index],
   }));
 
   const dataFormatter = (number: number) => `${number} °C`;

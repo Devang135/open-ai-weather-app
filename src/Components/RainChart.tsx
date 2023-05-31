@@ -2,13 +2,14 @@
 
 import { AreaChart, Card, Title } from '@tremor/react';
 import React from 'react';
+import { Root } from '../../typings';
 
 interface RainChartProps {
-  result: Root;
+  results: Root;
 }
 
-const RainChart: React.FC<RainChartProps> = ({ result }) => {
-  const hourly = result?.hourly.time
+const RainChart: React.FC<RainChartProps> = ({ results }) => {
+  const hourly = results?.hourly.time
     .map((time) =>
       new Date(time).toLocaleString('en-US', {
         hour: 'numeric',
@@ -19,7 +20,7 @@ const RainChart: React.FC<RainChartProps> = ({ result }) => {
 
   const data = hourly.map((hour, index) => ({
     time: Number(hour),
-    'Rain %': result.hourly.precipitation_probability[index],
+    'Rain %': results.hourly.precipitation_probability[index],
   }));
 
   const dataFormatter = (number: number) => `${number} %`;

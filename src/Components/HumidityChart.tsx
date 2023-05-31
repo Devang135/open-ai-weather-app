@@ -2,13 +2,14 @@
 
 import { AreaChart, Card, Title } from '@tremor/react';
 import React from 'react';
+import { Root } from '../../typings';
 
 interface HumidityChartProps {
-  result: Root;
+  results: Root;
 }
 
-const HumidityChart: React.FC<HumidityChartProps> = ({ result }) => {
-  const hourly = result?.hourly.time
+const HumidityChart: React.FC<HumidityChartProps> = ({ results }) => {
+  const hourly = results?.hourly.time
     .map((time) =>
       new Date(time).toLocaleString('en-US', {
         hour: 'numeric',
@@ -19,7 +20,7 @@ const HumidityChart: React.FC<HumidityChartProps> = ({ result }) => {
 
   const data = hourly.map((hour, index) => ({
     time: Number(hour),
-    'Humidity (%)': result.hourly.relativehumidity_2m[index],
+    'Humidity (%)': results.hourly.relativehumidity_2m[index],
   }));
 
   const dataFormatter = (number: number) => `${number} %`;
