@@ -18,15 +18,16 @@ const InformationPanel: React.FC<InformationPanelProps> = ({
   results,
 }) => {
   return (
-    <div className='bg-gradient-to-br from-[#394F68] to-[#183B7E] text-white p-10'>
-      <div className='pb-5'>
+  <div className='bg-gradient-to-br from-teal-400 to-blue-500 p-10'>
+      <div className='pb-5 text-white'>
         <h1 className='text-6xl font-bold'>{decodeURI(city)}</h1>
-        <p className='text-xs text-gray-400'>
+        <p className='text-xs text-white'>
           Long/Lat: {long}, {lat}
         </p>
       </div>
       <CityPicker />
       <hr className='my-10' />
+    <div className='text-white'>
       <div className='mt-5 items-center flex justify-between space-x-10'>
         <div>
           <p className='text-xl'>
@@ -79,6 +80,7 @@ const InformationPanel: React.FC<InformationPanelProps> = ({
             </p>
           </div>
         </div>
+      </div>
       </div>
       <div className='space-y-2 py-5'>
         <div className='flex items-center space-x-2 px-4 py-3 border border-[#6F90CD] rounded-md bg-[#405885]'>

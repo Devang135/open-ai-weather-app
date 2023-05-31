@@ -28,10 +28,9 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
     console.log(results);
   return (
   <div>
-    <div className="p-5">
-      <div>
+    <div className='flex flex-col min-h-screen md:flex-row'>
       <InformationPanel city={city} lat={lat} long={long} results={results} />
-      </div>
+        <div className='flex-1 p-5 lg:p-10'>
           <div className="pb-5">
           <div>
             <h1 className="text-xl font-semibold">Today Overview</h1>
@@ -87,7 +86,7 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
         
       </div>
     </div>
-
+    </div>
   </div>
   );
 }

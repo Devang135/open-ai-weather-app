@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images:{
-        domains:['www.weatherbit.com']
+        domains:['www.weatherbit.io']
 
     },
     experimental:
