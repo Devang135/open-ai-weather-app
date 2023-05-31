@@ -1,0 +1,4 @@
+{
+  "endpoint": "api/juiced-olm",
+  "root": "stepzen/curl"
+}
