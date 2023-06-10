@@ -24,7 +24,8 @@ export  async function POST (request: Request) {
     });
 
     const {data} = response;
-    console.log(data);
+    
+    console.log("Data is ", data);
 
-return NextResponse.json(response.data.choices[0].message);
+return NextResponse.json(data.choices[0].message);
 }   

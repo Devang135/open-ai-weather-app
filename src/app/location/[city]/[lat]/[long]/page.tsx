@@ -5,7 +5,7 @@ import CalloutCard from "@/Components/CalloutCard";
 import { HumidityChart, InformationPanel, RainChart, StatCard, TempChart } from "@/Components";
 import cleanData from "@/lib/CleanData";
 import {Configuration ,OpenAIApi} from "openai";
-import  openai from "@/Components/openai";
+import getBasePath from "@/lib/getBasePath";
 
 export const revalidate = 60;
 
@@ -39,21 +39,20 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
     console.log(dataToSend);
 
 
-    const res = await fetch(`$localhost:3000/api/getWeatherSummary`,{
+    const res = await fetch(`${getBasePath()}/api`,{
       method: "POST",
             headers: {
               "Content-Type": "application/json",
-              'Authorization': `Bearer ${process.env.OPENAPI}`,
             },
             body: JSON.stringify({
               weatherData:dataToSend,
             }),
     });
 
-    const weatherSummary = await res.json();
-    const {Content} = weatherSummary; 
-    
-  
+    const GPTDATA = await res.json();
+
+    const {content} = GPTDATA;
+
   return (
   <div>
     <div className='flex flex-col min-h-screen md:flex-row'>
@@ -71,7 +70,7 @@ async function WeatherPage({ params: { city, lat, long } }: Props) {
           </div>
 
           <div>
-              <CalloutCard message="recom"/>
+              <CalloutCard message={content}/>
           </div>
 
         <div className="pt-5 text-sm grid grid-cols-1 xl:grid-cols-2 gap-3 m-2">
