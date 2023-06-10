@@ -1,5 +1,4 @@
-import { SunIcon } from '@heroicons/react/solid';
-import React from 'react';
+
 
 const Loading = () => {
   return (
@@ -22,7 +21,7 @@ const Loading = () => {
       <div>
        
       <h1 className='text-6xl font-bold text-center mb-10 animate-pulse text-white'>
-        Loading AI Weather Information
+          Loading AI Weather Information
       </h1>
       </div>
       </div>
